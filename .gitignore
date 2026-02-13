@@ -31,3 +31,4 @@ audit_log.json
 audit_log.jsonl
 __pycache__/
 .venv/
+void_ledger.jsonl
