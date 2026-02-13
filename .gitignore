@@ -23,3 +23,11 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
+# Islah Nexus local secrets (DO NOT COMMIT)
+nexus_secrets.env
+.env
+.env.*
+audit_log.json
+audit_log.jsonl
+__pycache__/
+.venv/
