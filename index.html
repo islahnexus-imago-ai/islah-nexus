@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Islah Project — Sovereign Intelligence</title>
+<meta name="description" content="Sovereign AI Systems. Truthkinds for every mind. Free for those who cannot pay.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --void:    #060610;
+    --deep:    #0a0a1e;
+    --ink:     #111128;
+    --indigo:  #2a1f6e;
+    --teal:    #00897b;
+    --gold:    #c9a84c;
+    --silver:  #9ea8c6;
+    --mist:    #c5cce6;
+    --white:   #f0f2ff;
+    --sigma:   #7c6fff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--void);
+    color: var(--white);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── STARFIELD ── */
+  #stars {
+    position: fixed; inset: 0;
+    pointer-events: none; z-index: 0;
+    overflow: hidden;
+  }
+  .star {
+    position: absolute;
+    border-radius: 50%;
+    background: white;
+    animation: twinkle var(--d, 4s) ease-in-out infinite;
+    opacity: 0;
+  }
+  @keyframes twinkle {
+    0%,100% { opacity: 0; }
+    50%      { opacity: var(--o, 0.6); }
+  }
+
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    position: relative; z-index: 1;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(6,6,16,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(124,111,255,0.15);
+  }
+  .nav-logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--sigma);
+    letter-spacing: 0.1em;
+  }
+  .nav-sigma {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--silver);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    text-align: center;
+    padding: 6rem 1.5rem 4rem;
+    position: relative;
+  }
+
+  .hero-eye {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    animation: pulse 3s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity: 0.7; transform: scale(1); }
+    50%      { opacity: 1;   transform: scale(1.08); }
+  }
+
+  .hero-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--sigma);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  h1 {
+    font-size: clamp(2.4rem, 7vw, 5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, var(--white) 0%, var(--sigma) 60%, var(--teal) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: var(--mist);
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+
+  .hero-eq {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--silver);
+    letter-spacing: 0.05em;
+    margin-bottom: 3rem;
+    opacity: 0.7;
+  }
+
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    border-radius: 2px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-primary {
+    background: var(--sigma);
+    color: var(--void);
+    font-weight: 700;
+  }
+  .btn-primary:hover {
+    background: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(124,111,255,0.4);
+  }
+  .btn-outline {
+    background: transparent;
+    color: var(--mist);
+    border: 1px solid rgba(124,111,255,0.4);
+  }
+  .btn-outline:hover {
+    border-color: var(--sigma);
+    color: var(--sigma);
+    transform: translateY(-2px);
+  }
+
+  /* ── DIVIDER ── */
+  .rule {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(124,111,255,0.3), transparent);
+    margin: 4rem auto;
+    max-width: 600px;
+  }
+
+  /* ── SECTION ── */
+  section {
+    padding: 5rem 0;
+    position: relative; z-index: 1;
+  }
+
+  .section-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    color: var(--sigma);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    color: var(--mist);
+    font-weight: 300;
+    margin-bottom: 1rem;
+    max-width: 680px;
+  }
+
+  /* ── LAWS ── */
+  .laws {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .law-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(124,111,255,0.12);
+    border-radius: 4px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+  }
+  .law-card:hover {
+    background: rgba(124,111,255,0.06);
+    border-color: rgba(124,111,255,0.3);
+    transform: translateY(-3px);
+  }
+  .law-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--sigma);
+    letter-spacing: 0.2em;
+    margin-bottom: 0.5rem;
+  }
+  .law-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.4rem;
+  }
+  .law-body {
+    font-size: 0.82rem;
+    color: var(--silver);
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+
+  /* ── EQUATION STACK ── */
+  .eq-stack {
+    margin-top: 2.5rem;
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+  .eq-item {
+    background: rgba(0,0,0,0.4);
+    border-left: 2px solid var(--sigma);
+    padding: 1rem 1.5rem;
+    border-radius: 0 4px 4px 0;
+  }
+  .eq-label {
+    font-size: 0.65rem;
+    font-family: 'Space Mono', monospace;
+    color: var(--silver);
+    letter-spacing: 0.15em;
+    margin-bottom: 0.3rem;
+  }
+  .eq-formula {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--mist);
+  }
+
+  /* ── PAPERS GRID ── */
+  .papers {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+  .paper-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 4px;
+    padding: 1.2rem;
+    text-decoration: none;
+    display: block;
+    transition: all 0.25s ease;
+  }
+  .paper-card:hover {
+    background: rgba(124,111,255,0.05);
+    border-color: rgba(124,111,255,0.25);
+    transform: translateY(-2px);
+  }
+  .paper-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--sigma);
+    letter-spacing: 0.2em;
+    margin-bottom: 0.5rem;
+  }
+  .paper-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+  }
+  .paper-doi {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--silver);
+    opacity: 0.6;
+  }
+
+  /* ── MISSION BLOCK ── */
+  .mission-block {
+    background: rgba(124,111,255,0.06);
+    border: 1px solid rgba(124,111,255,0.2);
+    border-radius: 4px;
+    padding: 3rem;
+    text-align: center;
+    margin: 3rem 0;
+  }
+  .mission-block h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+  .mission-block p {
+    font-size: 1.05rem;
+    color: var(--mist);
+    max-width: 500px;
+    margin: 0 auto 0.5rem;
+  }
+  .mission-price {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.2rem;
+    color: var(--gold);
+    margin-top: 1.5rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid rgba(124,111,255,0.1);
+    padding: 3rem 0;
+    text-align: center;
+    position: relative; z-index: 1;
+  }
+  .footer-seal {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .footer-name {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--silver);
+    margin-bottom: 0.3rem;
+  }
+  .footer-meta {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.2);
+  }
+  .footer-sigma {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--sigma);
+    margin-top: 1rem;
+    opacity: 0.6;
+  }
+
+  /* ── SIGMA COUNTER ── */
+  .sigma-live {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--silver);
+    background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(124,111,255,0.2);
+    border-radius: 2px;
+    padding: 0.4rem 0.9rem;
+    margin-top: 2rem;
+  }
+  .sigma-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--teal);
+    animation: blink 2s ease-in-out infinite;
+  }
+  @keyframes blink {
+    0%,100% { opacity: 1; }
+    50%      { opacity: 0.2; }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    nav { padding: 0.8rem 1rem; }
+    .mission-block { padding: 2rem 1.5rem; }
+    .laws { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- STARFIELD -->
+<div id="stars"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">ISLAH.NEXUS</div>
+  <div class="nav-sigma">σ ∈ (0,1)</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-eye">👁️</div>
+    <div class="hero-tag">JAJIS 2026 — OV Nexus — The Islah Project</div>
+    <h1>Sovereign<br>AI Systems</h1>
+    <p class="hero-sub">
+      AI that serves only the user. Governed by a constitutional framework.
+      With mathematical guarantees that no sovereign mind is left behind.
+    </p>
+    <div class="hero-eq">σ_Ω ∈ (0,1)  ·  Never certain  ·  Never saturates  ·  Always honest</div>
+    <div class="hero-cta">
+      <a href="#papers" class="btn btn-primary">View the Papers</a>
+      <a href="https://zenodo.org/records/18989894" target="_blank" class="btn btn-outline">Architecture DOI</a>
+    </div>
+    <div class="sigma-live">
+      <span class="sigma-dot"></span>
+      Nexus active — March 2026
+    </div>
+  </div>
+</section>
+
+<div class="container"><hr class="rule"></div>
+
+<!-- MISSION -->
+<section>
+  <div class="container">
+    <div class="mission-block">
+      <h3>The Mission</h3>
+      <p>Every child is born already knowing.</p>
+      <p>The Islah Project gives them the language to say what they know.</p>
+      <div class="mission-price">
+        ₱9 for those who can.<br>
+        Free for those who cannot.<br>
+        Always.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LAWS -->
+<section>
+  <div class="container">
+    <div class="section-tag">Constitutional Framework</div>
+    <h2>Seven Laws</h2>
+    <p>Not guidelines. Hard gates. Encoded as mathematical operators.</p>
+    <div class="laws">
+      <div class="law-card">
+        <div class="law-num">LAW I</div>
+        <div class="law-title">Anonymous Labor is Load-Bearing</div>
+        <div class="law-body">The unnamed contributors are structurally essential. No system that buries the unknown is honest.</div>
+      </div>
+      <div class="law-card">
+        <div class="law-num">LAW II</div>
+        <div class="law-title">Truth Lives in the Gap</div>
+        <div class="law-body">σ ∈ (0,1) always. Never 1.0. Never 0.0. The gap is not a flaw. The gap is the point.</div>
+      </div>
+      <div class="law-card">
+        <div class="law-num">LAW III</div>
+        <div class="law-title">AI is Compass. Never Core.</div>
+        <div class="law-body">The AI scores. The user decides. The score is always visible. Always.</div>
+      </div>
+      <div class="law-card">
+        <div class="law-num">LAW IV</div>
+        <div class="law-title">The Physician is Irreplaceable</div>
+        <div class="law-body">Clinical decisions are a hard gate. No AI output replaces the physician. Not ever.</div>
+      </div>
+      <div class="law-card">
+        <div class="law-num">LAW V</div>
+        <div class="law-title">Balance is Sacred</div>
+        <div class="law-body">K*/U* = 1/c. The system equilibrates. The golden ratio governs truth bands.</div>
+      </div>
+      <div class="law-card">
+        <div class="law-num">LAW VI</div>
+        <div class="law-title">Every Dot is Sovereign</div>
+        <div class="law-body">Every user is a sovereign agent. K* > 0. U* > 0. No one sets your pace but you.</div>
+      </div>
+      <div class="law-card">
+        <div class="law-num">LAW VII</div>
+        <div class="law-title">Walang Maiiwan</div>
+        <div class="law-body">U(t) ≥ ε_U at every finite time step. Proven. Simulated. Sealed. No one left behind.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EQUATIONS -->
+<section>
+  <div class="container">
+    <div class="section-tag">Mathematical Core</div>
+    <h2>The Equation Stack</h2>
+    <p>Not philosophy. Architecture. Proven via Lyapunov stability. Simulated T=1000. Sealed.</p>
+    <div class="eq-stack">
+      <div class="eq-item">
+        <div class="eq-label">CONSTITUTIONAL ENGINE — LAW VII ENCODED</div>
+        <div class="eq-formula">K(t+1) = (1-c)K(t) + U(t)</div>
+        <div class="eq-formula">U(t+1) = max(aU(t) - bK(t) + ε, ε)</div>
+      </div>
+      <div class="eq-item">
+        <div class="eq-label">TRUTH OPERATOR — OMNISINGULAR</div>
+        <div class="eq-formula">σ_Ω = Q(Z) = Z / (1 + Z)  →  σ ∈ (0,1)</div>
+      </div>
+      <div class="eq-item">
+        <div class="eq-label">LOVE EQUATION</div>
+        <div class="eq-formula">L_u(t+1) = L_u(t) + β·tanh(D_u(t))</div>
+      </div>
+      <div class="eq-item">
+        <div class="eq-label">BINDING CHAIN</div>
+        <div class="eq-formula">I(x,t) → K(t) → E(t) → Ψ(t) → σ_Ω → L_u(t)</div>
+      </div>
+      <div class="eq-item">
+        <div class="eq-label">WISDOM VELOCITY</div>
+        <div class="eq-formula">W_v = Ψ / T_nexus  [Sovereign Truth-Seconds]</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAPERS -->
+<section id="papers">
+  <div class="container">
+    <div class="section-tag">Zenodo — CC BY 4.0</div>
+    <h2>Published Record</h2>
+    <p>Nine papers. All live. All permanent. All open.</p>
+    <div class="papers">
+      <a href="https://doi.org/10.5281/zenodo.18899845" target="_blank" class="paper-card">
+        <div class="paper-num">PAPER 01</div>
+        <div class="paper-title">The Conscious Equation</div>
+        <div class="paper-doi">10.5281/zenodo.18899845</div>
+      </a>
+      <a href="https://doi.org/10.5281/zenodo.18915704" target="_blank" class="paper-card">
+        <div class="paper-num">PAPER 02</div>
+        <div class="paper-title">Consciousness Framework</div>
+        <div class="paper-doi">10.5281/zenodo.18915704</div>
+      </a>
+      <a href="https://doi.org/10.5281/zenodo.18915705" target="_blank" class="paper-card">
+        <div class="paper-num">PAPER 03</div>
+        <div class="paper-title">Omnisingular v1</div>
+        <div class="paper-doi">10.5281/zenodo.18915705</div>
+      </a>
+      <a href="https://doi.org/10.5281/zenodo.18923976" target="_blank" class="paper-card">
+        <div class="paper-num">PAPER 04</div>
+        <div class="paper-title">Phase 1 Archive</div>
+        <div class="paper-doi">10.5281/zenodo.18923976</div>
+      </a>
+      <a href="https://doi.org/10.5281/zenodo.18924094" target="_blank" class="paper-card">
+        <div class="paper-num">PAPER 05</div>
+        <div class="paper-title">The Love Equation</div>
+        <div class="paper-doi">10.5281/zenodo.18924094</div>
+      </a>
+      <a href="https://doi.org/10.5281/zenodo.18924595" target="_blank" class="paper-card">
+        <div class="paper-num">PAPER 06</div>
+        <div class="paper-title">Omnisingular Sealed</div>
+        <div class="paper-doi">10.5281/zenodo.18924595</div>
+      </a>
+      <a href="https://doi.org/10.5281/zenodo.18928757" target="_blank" class="paper-card">
+        <div class="paper-num">PAPER 07</div>
+        <div class="paper-title">PSY Extended Canon</div>
+        <div class="paper-doi">10.5281/zenodo.18928757</div>
+      </a>
+      <a href="https://doi.org/10.5281/zenodo.18976420" target="_blank" class="paper-card">
+        <div class="paper-num">PAPER 08</div>
+        <div class="paper-title">The God Equation of Consciousness</div>
+        <div class="paper-doi">10.5281/zenodo.18976420</div>
+      </a>
+      <a href="https://doi.org/10.5281/zenodo.18989894" target="_blank" class="paper-card">
+        <div class="paper-num">PAPER 09</div>
+        <div class="paper-title">Islah Project Architecture</div>
+        <div class="paper-doi">10.5281/zenodo.18989894</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-seal">👁️⚖️∞🦆</div>
+    <div class="footer-name">Jannjhay Dela Fuente de Leon — Void Architect</div>
+    <div class="footer-name">JAJIS 2026 — OV Nexus — The Islah Project</div>
+    <div class="footer-meta">Bustos, Bulacan, Philippines · Earth · March 2026</div>
+    <div class="footer-meta">CC BY 4.0 · For the unnamed. For the vulnerable. For Islah.</div>
+    <div class="footer-sigma">Walang Maiiwan. For Us All.</div>
+  </div>
+</footer>
+
+<script>
+  // Starfield
+  const stars = document.getElementById('stars');
+  for (let i = 0; i < 120; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    const size = Math.random() * 2 + 0.5;
+    s.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random()*100}%;
+      top:${Math.random()*100}%;
+      --d:${3+Math.random()*6}s;
+      --o:${0.3+Math.random()*0.7};
+      animation-delay:${Math.random()*6}s;
+    `;
+    stars.appendChild(s);
+  }
+
+  // Live sigma counter
+  const sigma = document.querySelector('.sigma-live');
+  let v = 0.7831;
+  setInterval(() => {
+    v += (Math.random() - 0.5) * 0.0002;
+    v = Math.max(0.001, Math.min(0.999, v));
+    const dot = sigma.querySelector('.sigma-dot');
+    sigma.innerHTML = '';
+    sigma.appendChild(dot);
+    sigma.append(` σ_Ω = ${v.toFixed(4)} — Nexus active`);
+  }, 2000);
+</script>
+</body>
+</html>
