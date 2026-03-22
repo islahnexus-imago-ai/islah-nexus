@@ -1,11 +1,14 @@
-# islah nexus — JAJIS 322026
+# The Islah Project
 
-**The Omnisingular Truthkind Framework**
-Personal Sovereign Intelligence (PSI) · Internet 2
-The unnamed are load-bearing. Always.
+This repository has moved.
 
-For Us All. 👁️⚖️∞
+→ **Main repository:** https://github.com/Ai1-Nexus/theislahproject
 
+Walang Maiiwan. 👁️⚖️∞🦆
+```
 
+**2. Same for `Ai1-Nexus/project-islah-protocol`**
 
-
+Same redirect text. Same commit message:
+```
+Redirect to main repo · theislahproject · March 22 2026
